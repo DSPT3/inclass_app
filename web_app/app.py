@@ -46,7 +46,15 @@ def create_user():
     print("CREATING A NEW USER...")
     print("FORM DATA:", dict(request.form))
     # todo: create a new user
-    return jsonify({"message": "CREATED OK (TODO)"})
+    # return jsonify({"message": "CREATED OK (TODO)"})
+    if "name" in request.form:
+        name = request.form["name"]
+        print(name)
+        db.session.add(User(name=name))
+        db.session.commit()
+        return jsonify({"message": "CREATED OK", "name": name})
+    else:
+        return jsonify({"message": "OOPS! PLEASE SPECIFY A NAME"})
 
 # GET /hello
 # GET /hello?name=Polly
