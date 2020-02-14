@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
@@ -19,3 +19,10 @@ def users():
         {"id":3, "name":"Third User"},
     ]
     return jsonify(users)
+
+@app.route("/users/create", METHODS=["POST"])
+def create_user():
+    print("CREATING A NEW USER...")
+    print("FORM DATA:", dict(request.form))
+    # todo: create a new user
+    return jsonify({"message": "CREATED OK (TODO)"})
