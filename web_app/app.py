@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
@@ -10,4 +10,12 @@ def index():
 def about():
     return "About Me!"
 
-
+@app.route("/users")
+@app.route("/users.json")
+def users():
+    users = [
+        {"id":1, "name":"First User"},
+        {"id":2, "name":"Second User"},
+        {"id":3, "name":"Third User"},
+    ]
+    return jsonify(users)
